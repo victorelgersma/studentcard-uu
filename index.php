@@ -10,7 +10,7 @@ header("Pragma: no-cache");
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Cache bust --> 
+    <!-- Cache bust -->
     <link rel="stylesheet" href="style.css?v=4" />
 
 </head>
@@ -19,8 +19,8 @@ header("Pragma: no-cache");
 
     <div class="container">
 
-        <p class="intro">
         <h1>Unofficial Convenience Card </h1>
+
 
         <div class="card-slider" aria-label="Card preview">
             <div class="slides">
@@ -42,16 +42,28 @@ header("Pragma: no-cache");
             </div>
         </div>
 
-        This is a laminated, pocket-sized copy of your enrollment certificate. It is <em>not</em> issued by Utrecht
-        University and is <em>not</em> a university ID card.
+        <p class="price">
+            Price: <strong>€3.50</strong>
+        </p>
 
-        However, in accordance with Utrecht University's policy, it may be used to demonstrate your student status when
-        accessing university buildings, provided that an enrollment certificate is accepted for that purpose.
+        <p class="cost-explanation">
+            The cost covers the printing and professional lamination of your card
+            at a commercial print shop.
+        </p>
+
+        <p class="intro">
+            This is a laminated, pocket-sized copy of your enrollment certificate. It is <em>not</em> issued by Utrecht
+            University and is <em>not</em> a university ID card.
+
+            However, in accordance with Utrecht University's policy, it may be used to demonstrate your student status
+            when
+            accessing university buildings, provided that an enrollment certificate is accepted for that purpose.
 
         </p>
 
         <form method="post" action="send_order.php" enctype="multipart/form-data">
 
+            <input type="hidden" name="amount" value="3.50 EUR">
             <label>
                 Your name
                 <input name="name" autocomplete="name" required>
@@ -78,15 +90,24 @@ header("Pragma: no-cache");
                 </small>
             </label>
 
+            <div class="order-notice">
+                <strong>How it works</strong>
+                <p>
+                    Submit this form to request your card. I will send you a Tikkie payment
+                    request for <strong>€3.50</strong>. After payment is received, your card will be professionally printed and
+laminated at a commercial print shop, and we will arrange a handover.
+                </p>
+            </div>
+
             <button type="submit">
-                Order card
+                Request card
             </button>
 
         </form>
 
         <footer class="footer">
-    Questions? email <a href="mailto:conveniencecard@vjbe.net">conveniencecard@vjbe.net</a>
-</footer>
+            Questions? email <a href="mailto:conveniencecard@vjbe.net">conveniencecard@vjbe.net</a>
+        </footer>
     </div>
     <script>
         const slides = document.querySelector('.slides');

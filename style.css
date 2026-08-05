@@ -76,6 +76,14 @@ body {
     cursor: pointer;
 }
 
+.cost-explanation {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    margin: -10px 0 25px;
+    line-height: 1.5;
+}
+
 .dot.active {
     background: white;
 }
@@ -178,4 +186,33 @@ button:hover {
 
 .footer a:hover {
     color: #222;
+}
+
+.price {
+    text-align: center;
+    font-size: 20px;
+    margin: 20px 0;
+}
+
+.order-notice {
+    margin-top: 25px;
+    padding: 15px;
+    background: #f5f5f5;
+    border-radius: 8px;
+    line-height: 1.5;
+    font-size: 15px;
+}
+
+.order-notice > strong {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.thank-you-image {
+    display: block;
+    width: 250px;
+    max-width: 80%;
+    height: auto;
+    margin: 30px auto 10px;
+    border-radius: 12px;
 }

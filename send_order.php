@@ -39,8 +39,9 @@ if ($_FILES['enrolment_certificate']['size'] > 5 * 1024 * 1024) {
 }
 
 $name = htmlspecialchars($_POST['name'] ?? '');
+
 $email = filter_var($_POST['email'] ?? '', FILTER_SANITIZE_EMAIL);
-$amount = htmlspecialchars($_POST['amount'] ?? '');
+$amount = '3.50 EUR';
 $message = htmlspecialchars($_POST['message'] ?? '');
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -84,14 +85,15 @@ try {
 
     $customerMail->Subject = "Your Unofficial Convenience Card";
 
-$customerMail->Body =
-    "Hi $name,
+    $customerMail->Body =
+        "Hi $name,
 
 Thank you for your request for an Unofficial Convenience Card!
 
 We have received your order details and your enrollment certificate.
 
-We will review your certificate and contact you shortly with the next steps, including payment details and card production.
+I will review your certificate and contact you shortly with a Tikkie payment request for €4.
+After payment, your card will be printed and we will arrange a handover.
 
 Thank you!
 
@@ -143,7 +145,7 @@ $message
     $storeMail->send();
 
 
-echo "
+    echo "
 <!doctype html>
 <html lang=\"en\">
 <head>
@@ -163,13 +165,15 @@ echo "
     </p>
 
     <p>
-        We will review your enrollment certificate and contact you shortly
-        with the next steps, including payment details and card production.
-    </p>
+    I will review your enrollment certificate and contact you shortly with a
+    Tikkie payment request for €3.50. After payment, your card will be printed and
+    we will arrange a handover.
+</p>
 
     <p>
         You can safely close this page.
     </p>
+    <img class=\"thank-you-image\" src=\"https://img.vjbe.net/thumbs-up-nerd-image-short-sleeved-shirt-giving-273236103-1834129865.webp\" alt=\"thumbs up guy\" />
 </div>
 
 </body>
