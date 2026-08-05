@@ -2,6 +2,9 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
+ini_set('display_errors', 1);
+
+
 use Dotenv\Dotenv;
 use PHPMailer\PHPMailer\PHPMailer;
 
@@ -14,6 +17,25 @@ if (!isset($_ENV['FASTMAIL_USERNAME'], $_ENV['FASTMAIL_PASSWORD'])) {
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit('Invalid request');
+}
+
+if (
+    !isset($_FILES['enrolment_certificate']) ||
+    $_FILES['enrolment_certificate']['error'] !== UPLOAD_ERR_OK
+) {
+    exit('Please upload your enrollment certificate.');
+}
+
+$tmpFile = $_FILES['enrolment_certificate']['tmp_name'];
+
+$finfo = new finfo(FILEINFO_MIME_TYPE);
+$mime = $finfo->file($tmpFile);
+
+if ($mime !== 'application/pdf') {
+    exit('The enrollment certificate must be a PDF.');
+}
+if ($_FILES['enrolment_certificate']['size'] > 5 * 1024 * 1024) {
+    exit('PDF is too large (max 5 MB).');
 }
 
 $name = htmlspecialchars($_POST['name'] ?? '');
@@ -40,8 +62,8 @@ function configureMailer(PHPMailer $mail): void
     $mail->CharSet = 'UTF-8';
 
     $mail->setFrom(
-        'martenitsi@vjbe.net',
-        'Martenitsi Store'
+        'conveniencecard@vjbe.net',
+        'Convenience Card'
     );
 }
 
@@ -60,24 +82,20 @@ try {
         $name
     );
 
-    $customerMail->Subject = "Your martenitsi reservation";
+    $customerMail->Subject = "Your Unofficial Convenience Card";
 
-    $customerMail->Body =
-"Hi $name,
+$customerMail->Body =
+    "Hi $name,
 
-Thank you for your martenitsi reservation!
+Thank you for your request for an Unofficial Convenience Card!
 
-We have received your request for:
+We have received your order details and your enrollment certificate.
 
-Amount:
-$amount martenitsi
-
-$message
-
-We will contact you shortly with the final details, including shipping costs.
+We will review your certificate and contact you shortly with the next steps, including payment details and card production.
 
 Thank you!
-Martenitsi Store
+
+Unofficial Convenience Card
 ";
 
     $customerMail->send();
@@ -99,10 +117,15 @@ Martenitsi Store
         $name
     );
 
-    $storeMail->Subject = "New Martenitsi reservation";
+    $storeMail->addAttachment(
+        $tmpFile,
+        $_FILES['enrolment_certificate']['name']
+    );
+
+    $storeMail->Subject = "New Convenience Card Reservation";
 
     $storeMail->Body =
-"New reservation received
+        "New reservation received
 
 Name:
 $name
@@ -120,11 +143,38 @@ $message
     $storeMail->send();
 
 
-    echo "
+echo "
+<!doctype html>
+<html lang=\"en\">
+<head>
+    <meta charset=\"utf-8\">
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
+    <title>Thank you - Unofficial Convenience Card</title>
+    <link rel=\"stylesheet\" href=\"style.css\">
+</head>
+
+<body>
+
+<div class=\"container thank-you\">
     <h1>Thank you!</h1>
-    <p>Your reservation has been received.</p>
-    <p>We will contact you shortly with the next steps.</p>
-    ";
+
+    <p class=\"intro\">
+        Your request for an Unofficial Convenience Card has been received.
+    </p>
+
+    <p>
+        We will review your enrollment certificate and contact you shortly
+        with the next steps, including payment details and card production.
+    </p>
+
+    <p>
+        You can safely close this page.
+    </p>
+</div>
+
+</body>
+</html>
+";
 
 
 } catch (Exception $e) {

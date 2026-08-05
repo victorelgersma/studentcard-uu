@@ -2,7 +2,7 @@
 #
 # deploy.sh
 #
-# Deploys the martenitsi order form to the Hetzner host.
+# Deploys the student card order form to the Hetzner host.
 #
 
 set -euo pipefail
