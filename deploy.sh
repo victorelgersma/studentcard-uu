@@ -10,7 +10,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 
 REMOTE_HOST="hetzner"
-REMOTE_DIR="~/html/martenitsi"
+REMOTE_DIR="~/html/studentcard"
 
 echo "==> Checking local files..."
 
@@ -56,4 +56,4 @@ rsync -avz --inplace \
     "${REMOTE_HOST}:${REMOTE_DIR}/vendor/"
 
 echo "==> Deployment complete!"
-echo "https://martenitsi.vjbe.net"
+echo "https://studentcard.vjbe.net"

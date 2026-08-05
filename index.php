@@ -5,15 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="style.css" />
 
-<title>Reserve your martenitsi</title>
-
 </head>
 
 <body>
 
 <div class="container">
-
-<h1>Reserve your martenitsi</h1>
 
 <p class="intro">
 <h1>Unofficial Convenience Card </h1>
@@ -41,29 +37,7 @@ Email
 >
 </label>
 
-<label>
-Amount
-<select name="amount">
-    <option value="1">1 martenitsa</option>
-    <option value="2">2 martenitsas</option>
-    <option value="5">5 martenitsas</option>
-    <option value="10">10 martenitsas</option>
-    <option value="20">20 martenitsas</option>
-</select>
-</label>
-
-<label>
-Message
-<textarea 
-    name="message"
-    rows="5"
-    placeholder="Any questions or special requests?"
-></textarea>
-</label>
-
-<button type="submit">
-Reserve yours
-</button>
+<!-- Drop a PDF of your enrollment certificate here --> 
 
 </form>
 
