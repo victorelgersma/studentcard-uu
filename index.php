@@ -46,19 +46,9 @@ header("Pragma: no-cache");
             Price: <strong>€3.50</strong>
         </p>
 
-        <p class="cost-explanation">
-            The cost covers the printing and professional lamination of your card
-            at a commercial print shop.
-        </p>
-
         <p class="intro">
             This is a laminated, pocket-sized copy of your enrollment certificate. It is <em>not</em> issued by Utrecht
-            University and is <em>not</em> a university ID card.
-
-            However, in accordance with Utrecht University's policy, it may be used to demonstrate your student status
-            when
-            accessing university buildings, provided that an enrollment certificate is accepted for that purpose.
-
+            University and is <em>not</em> an official university ID card.
         </p>
 
         <form method="post" action="send_order.php" enctype="multipart/form-data">
@@ -93,9 +83,9 @@ header("Pragma: no-cache");
             <div class="order-notice">
                 <strong>How it works</strong>
                 <p>
-                    Submit this form to request your card. I will send you a Tikkie payment
-                    request for <strong>€3.50</strong>. After payment is received, your card will be professionally printed and
-laminated at a commercial print shop, and we will arrange a handover.
+                    After you request your card, I will send you a Tikkie payment
+                    request for <strong>€3.50</strong>. Your card will be professionally printed and
+laminated at a commercial print shop, and we will arrange a handover. 
                 </p>
             </div>
 
