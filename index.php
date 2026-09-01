@@ -11,17 +11,13 @@ header("Pragma: no-cache");
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Cache bust -->
-    <link rel="stylesheet" href="style.css?v=5" />
+    <link rel="stylesheet" href="style.css?v=4" />
 
 </head>
 
 <body>
 
     <div class="container">
-
-        <p class="campaign-banner">
-            A <a href="https://agoodidea.vjbe.net/" target="_blank" rel="noopener">Good ID(ea)</a> initiative
-        </p>
 
         <h1>Unofficial Convenience Card </h1>
 
@@ -47,9 +43,7 @@ header("Pragma: no-cache");
         </div>
 
         <p class="price">
-            Price: <span class="price-old">€3.50</span> <strong class="price-new">€0</strong>
-            <br>
-            <span class="sale-note">SEPTEMBER SALE!</span>
+            Price: <strong>€3.50</strong>
         </p>
 
         <p class="intro">
@@ -59,7 +53,7 @@ header("Pragma: no-cache");
 
         <form method="post" action="send_order.php" enctype="multipart/form-data">
 
-            <input type="hidden" name="amount" value="0.00 EUR (September sale)">
+            <input type="hidden" name="amount" value="3.50 EUR">
             <label>
                 Your name
                 <input name="name" autocomplete="name" required>
@@ -89,9 +83,9 @@ header("Pragma: no-cache");
             <div class="order-notice">
                 <strong>How it works</strong>
                 <p>
-                    Your card will be professionally printed and
-                    laminated at a commercial print shop, and we will arrange a handover — free of charge during the
-                    September sale.
+                    After you request your card, I will send you a Tikkie payment
+                    request for <strong>€3.50</strong>. Your card will be professionally printed and
+laminated at a commercial print shop, and we will arrange a handover. 
                 </p>
             </div>
 
