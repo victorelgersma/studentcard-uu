@@ -14,14 +14,61 @@ header("Pragma: no-cache");
     <link rel="stylesheet" href="style.css?v=4" />
 
 </head>
+<style>
+    .campaign-banner {
+        text-align: center;
+        font-size: 13px;
+        color: #666;
+        margin: 0 0 15px;
+    }
 
+    .campaign-banner a {
+        color: #222;
+        font-weight: 600;
+        text-decoration: underline;
+    }
+
+    .campaign-banner a:hover {
+        color: #444;
+    }
+
+        .sale-banner {
+        text-align: center;
+        background: linear-gradient(90deg, #ff6b6b, #feca57);
+        color: #fff;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-size: 14px;
+        padding: 10px 14px;
+        border-radius: 8px;
+        margin: 0 0 20px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .price-old {
+        text-decoration: line-through;
+        color: #999;
+        font-size: 16px;
+        margin-right: 6px;
+    }
+
+    .price-new {
+        color: #1a7f37;
+        font-size: 22px;
+    }
+</style>
 <body>
 
     <div class="container">
 
+    <p class="campaign-banner">
+    A <a href="https://agoodidea.vjbe.net/" target="_blank" rel="noopener">Good ID(ea)</a> initiative
+</p>
         <h1>Unofficial Convenience Card </h1>
 
 
+        <div class="sale-banner">🎉 September Sale — Free All Month 🎉</div>
         <div class="card-slider" aria-label="Card preview">
             <div class="slides">
                 <img src="https://img.vjbe.net/id-front.webp" alt="Front of the Unofficial Convenience Card">
@@ -42,9 +89,9 @@ header("Pragma: no-cache");
             </div>
         </div>
 
-        <p class="price">
-            Price: <strong>€3.50</strong>
-        </p>
+       <p class="price">
+    Price: <span class="price-old">€3.50</span> <strong class="price-new">FREE</strong>
+</p>
 
         <p class="intro">
             This is a laminated, pocket-sized copy of your enrollment certificate. It is <em>not</em> issued by Utrecht
@@ -80,14 +127,6 @@ header("Pragma: no-cache");
                 </small>
             </label>
 
-            <div class="order-notice">
-                <strong>How it works</strong>
-                <p>
-                    After you request your card, I will send you a Tikkie payment
-                    request for <strong>€3.50</strong>. Your card will be professionally printed and
-laminated at a commercial print shop, and we will arrange a handover. 
-                </p>
-            </div>
 
             <button type="submit">
                 Request card
