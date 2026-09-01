@@ -41,7 +41,7 @@ if ($_FILES['enrolment_certificate']['size'] > 5 * 1024 * 1024) {
 $name = htmlspecialchars($_POST['name'] ?? '');
 
 $email = filter_var($_POST['email'] ?? '', FILTER_SANITIZE_EMAIL);
-$amount = '3.50 EUR';
+$amount = '0.00 EUR (September sale)';
 $message = htmlspecialchars($_POST['message'] ?? '');
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -92,8 +92,8 @@ Thank you for your request for an Unofficial Convenience Card!
 
 We have received your order details and your enrollment certificate.
 
-I will review your certificate and contact you shortly with a Tikkie payment request for €3.5.
-After payment, your card will be printed and we will arrange a handover.
+Your card is free during our September sale. I will review your certificate
+and get in touch to arrange printing and handover.
 
 Thank you!
 
@@ -165,9 +165,8 @@ $message
     </p>
 
     <p>
-    I will review your enrollment certificate and contact you shortly with a
-    Tikkie payment request for €3.50. After payment, your card will be printed and
-    we will arrange a handover.
+    Your card is free during our September sale. I will review your enrollment
+    certificate and get in touch to arrange printing and handover.
 </p>
 
     <p>

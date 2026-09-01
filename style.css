@@ -11,6 +11,23 @@ body {
     padding: 20px;
 }
 
+.campaign-banner {
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+    margin: 0 0 15px;
+}
+
+.campaign-banner a {
+    color: #222;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.campaign-banner a:hover {
+    color: #444;
+}
+
 .card-slider {
     position: relative;
     margin: 25px auto;
@@ -192,6 +209,26 @@ button:hover {
     text-align: center;
     font-size: 20px;
     margin: 20px 0;
+}
+
+.price-old {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 16px;
+    margin-right: 6px;
+}
+
+.price-new {
+    color: #1a7f37;
+    font-size: 22px;
+}
+
+.sale-note {
+    display: inline-block;
+    margin-top: 4px;
+    font-size: 13px;
+    color: #666;
+    font-weight: normal;
 }
 
 .order-notice {
