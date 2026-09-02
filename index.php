@@ -57,6 +57,50 @@ header("Pragma: no-cache");
         color: #1a7f37;
         font-size: 22px;
     }
+
+        .faq {
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+    }
+
+    .faq h2 {
+        font-size: 16px;
+        margin: 0 0 12px;
+    }
+
+    .faq-item {
+        border: 1px solid #eee;
+        border-radius: 8px;
+        padding: 10px 14px;
+    }
+
+    .faq-item summary {
+        cursor: pointer;
+        font-weight: 600;
+        list-style: none;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .faq-item summary::before {
+        content: "+";
+        display: inline-block;
+        width: 1em;
+        color: #666;
+    }
+
+    .faq-item[open] summary::before {
+        content: "–";
+    }
+
+    .faq-item p {
+        margin: 10px 0 0;
+        line-height: 1.5;
+        color: #444;
+    }
 </style>
 <body>
 
@@ -95,7 +139,7 @@ header("Pragma: no-cache");
 
         <p class="intro">
             This is a laminated, pocket-sized copy of your enrollment certificate. It is <em>not</em> issued by Utrecht
-            University and is <em>not</em> an official university ID card.
+            University and is <em>not</em> an official university ID card. However, it does allow you to gain access to university buildings, including the botanical gardens, without a smartphone.
         </p>
 
         <form method="post" action="send_order.php" enctype="multipart/form-data">
@@ -133,6 +177,21 @@ header("Pragma: no-cache");
             </button>
 
         </form>
+                <div class="faq">
+            <h2>FAQ</h2>
+            <details class="faq-item">
+                <summary>Where do I find my enrolment certificate?</summary>
+                <p>
+                    See our <a href="https://enrolmentwhere.vjbe.net/" target="_blank" rel="noopener">step-by-step screenshots</a> showing exactly where to find it.
+                </p>
+            </details>
+            <details class="faq-item">
+                <summary>What happens after I request a card?</summary>
+                <p>
+                 The <a href="https://agoodidea.vjbe.net">Good ID(ea)</a> team will print and laminate your card for free, after which they will contact you to arrange a handover. This will probably be at Drift or the Parnassos Culture Café.
+                </p>
+            </details>
+        </div>
 
         <footer class="footer">
             Questions? email <a href="mailto:conveniencecard@vjbe.net">conveniencecard@vjbe.net</a>
