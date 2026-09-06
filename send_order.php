@@ -111,7 +111,7 @@ Unofficial Convenience Card
     configureMailer($storeMail);
 
     $storeMail->addAddress(
-        'martenitsi@vjbe.net'
+        'conveniencecard@vjbe.net'
     );
 
     $storeMail->addReplyTo(
