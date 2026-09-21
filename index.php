@@ -117,6 +117,7 @@ header("Pragma: no-cache");
             <div class="slides">
                 <img src="https://img.vjbe.net/id-front.webp" alt="Front of the Unofficial Convenience Card">
                 <img src="https://img.vjbe.net/id-back.webp" alt="Back of the Unofficial Convenience Card">
+                <img src="https://drive.vjbe.net/2026-09-19-laura.webp" alt="A woman holding her convenience card">
             </div>
 
             <button class="slider-button prev" type="button" aria-label="Previous image">
@@ -127,10 +128,11 @@ header("Pragma: no-cache");
                 ›
             </button>
 
-            <div class="slider-dots">
-                <button class="dot active" type="button" aria-label="Show front"></button>
-                <button class="dot" type="button" aria-label="Show back"></button>
-            </div>
+<div class="slider-dots">
+    <button class="dot active" type="button" aria-label="Show front"></button>
+    <button class="dot" type="button" aria-label="Show back"></button>
+    <button class="dot" type="button" aria-label="Show third image"></button>
+</div>
         </div>
 
        <p class="price">
@@ -138,17 +140,13 @@ header("Pragma: no-cache");
 </p>
 
         <p class="intro">
-            This is a laminated, pocket-sized copy of your enrollment certificate. It is <em>not</em> issued by Utrecht
+            This is a laminated, pocket-sized copy of your enrolment certificate. It is <em>not</em> issued by Utrecht
             University and is <em>not</em> an official university ID card. However, it does allow you to gain access to university buildings, including the botanical gardens, without a smartphone.
         </p>
 
         <form method="post" action="send_order.php" enctype="multipart/form-data">
 
             <input type="hidden" name="amount" value="3.50 EUR">
-            <label>
-                Your name
-                <input name="name" autocomplete="name" required>
-            </label>
 
             <label>
                 Email
@@ -156,7 +154,7 @@ header("Pragma: no-cache");
             </label>
 
             <label>
-                Enrollment certificate (PDF)
+                enrolment certificate (PDF)
 
                 <input type="file" name="enrolment_certificate" accept="application/pdf,.pdf" required>
 
@@ -165,14 +163,24 @@ header("Pragma: no-cache");
                 </small>
 
                 <small>
-                    Privacy: Your enrollment certificate is used only to verify your student status and produce your
+                    Privacy: Your enrolment certificate is used only to verify your student status and produce your
                     card.
                     It is not shared with third parties and will be deleted after your order has been completed.
                 </small>
             </label>
 
+            <label>
+                Profile picture (optional)
 
-            <button type="submit">
+                <input type="file" name="profile_picture" accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp">
+
+                <small>
+                    If you'd like a photo printed on your card, upload one here (JPEG, PNG, or WebP, max 5 MB). Leave this blank and we'll print the card without a photo.
+                </small>
+            </label>
+
+
+           <button type="submit" id="submit-btn">
                 Request card
             </button>
 
@@ -191,39 +199,83 @@ header("Pragma: no-cache");
                  The <a href="https://agoodidea.vjbe.net">Good ID(ea)</a> team will print and laminate your card for free, after which they will contact you to arrange a handover. This will probably be at Drift or the Parnassos Culture Café.
                 </p>
             </details>
+<details class="faq-item">
+    <summary>Who is behind this?</summary>
+    <p>
+        This card is a side project by
+        <a href="https://vjbe.net" target="_blank" rel="noopener">Victor Elgersma-Azmanov</a>,
+        a UU student, made as a stopgap while the
+        <a href="https://agoodidea.vjbe.net" target="_blank" rel="noopener">A Good ID(ea)</a>
+        campaign pushes the university to bring back an optional physical
+        student card. It isn't affiliated with or endorsed by Utrecht
+        University. Questions? Email
+        <a href="mailto:conveniencecard@vjbe.net">conveniencecard@vjbe.net</a>.
+    </p>
+</details>
+<details class="faq-item">
+    <summary>How many orders have you had?</summary>
+    <p>
+        As of the 19th of September 2026, we have had 8 orders and have delivered 5.
+    </p>
+</details>
+
         </div>
 
         <footer class="footer">
             Questions? email <a href="mailto:conveniencecard@vjbe.net">conveniencecard@vjbe.net</a>
         </footer>
     </div>
-    <script>
-        const slides = document.querySelector('.slides');
-        const dots = document.querySelectorAll('.dot');
 
-        let currentSlide = 0;
+<script>
+const slides = document.querySelector('.slides');
+const slideImages = slides.querySelectorAll('img');
+const dotsContainer = document.querySelector('.slider-dots');
 
-        function showSlide(index) {
-            currentSlide = index;
-            slides.style.transform = `translateX(-${index * 100}%)`;
+let currentSlide = 0;
 
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === index);
-            });
-        }
+// Generate one dot per image
+dotsContainer.innerHTML = '';
+slideImages.forEach((img, index) => {
+    const dot = document.createElement('button');
+    dot.className = 'dot' + (index === 0 ? ' active' : '');
+    dot.type = 'button';
+    dot.setAttribute('aria-label', img.alt || `Show image ${index + 1}`);
+    dot.addEventListener('click', () => showSlide(index));
+    dotsContainer.appendChild(dot);
+});
 
-        document.querySelector('.prev').addEventListener('click', () => {
-            showSlide((currentSlide - 1 + dots.length) % dots.length);
-        });
+const dots = dotsContainer.querySelectorAll('.dot');
 
-        document.querySelector('.next').addEventListener('click', () => {
-            showSlide((currentSlide + 1) % dots.length);
-        });
+function showSlide(index) {
+    currentSlide = index;
+    slides.style.transform = `translateX(-${index * 100}%)`;
 
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => showSlide(index));
-        });
-    </script>
+    dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+    });
+}
+
+document.querySelector('.prev').addEventListener('click', () => {
+    showSlide((currentSlide - 1 + dots.length) % dots.length);
+});
+
+document.querySelector('.next').addEventListener('click', () => {
+    showSlide((currentSlide + 1) % dots.length);
+});
+document.querySelector('form').addEventListener('submit', (e) => {
+   const btn = document.getElementById('submit-btn');
+
+    // Let native "required" field validation block submission first —
+    // only show the spinner once the browser has actually accepted the submit.
+    if (!e.target.checkValidity()) {
+        return;
+    }
+
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span> Sending...';
+});
+
+</script>
 </body>
 
 </html>

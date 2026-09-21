@@ -1,2 +1,3 @@
 
+- [ ] we don't need a name, just an email address
 - [ ] step 1: have a single PHP file that simply sends an email to elgersmav@gmail.com  (I deal with the Tikkies etc). 

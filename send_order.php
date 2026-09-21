@@ -23,7 +23,7 @@ if (
     !isset($_FILES['enrolment_certificate']) ||
     $_FILES['enrolment_certificate']['error'] !== UPLOAD_ERR_OK
 ) {
-    exit('Please upload your enrollment certificate.');
+    exit('Please upload your enrolment certificate.');
 }
 
 $tmpFile = $_FILES['enrolment_certificate']['tmp_name'];
@@ -32,13 +32,35 @@ $finfo = new finfo(FILEINFO_MIME_TYPE);
 $mime = $finfo->file($tmpFile);
 
 if ($mime !== 'application/pdf') {
-    exit('The enrollment certificate must be a PDF.');
+    exit('The enrolment certificate must be a PDF.');
 }
 if ($_FILES['enrolment_certificate']['size'] > 5 * 1024 * 1024) {
     exit('PDF is too large (max 5 MB).');
 }
+// Profile picture is optional — only validate if one was actually uploaded.
+$hasProfilePicture = isset($_FILES['profile_picture'])
+    && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK;
 
-$name = htmlspecialchars($_POST['name'] ?? '');
+if ($hasProfilePicture) {
+    $profileTmpFile = $_FILES['profile_picture']['tmp_name'];
+
+    $allowedImageMimes = [
+        'image/jpeg',
+        'image/png',
+        'image/webp',
+    ];
+
+    $profileMime = $finfo->file($profileTmpFile);
+
+    if (!in_array($profileMime, $allowedImageMimes, true)) {
+        exit('Profile picture must be a JPEG, PNG, or WebP image.');
+    }
+
+    if ($_FILES['profile_picture']['size'] > 5 * 1024 * 1024) {
+        exit('Profile picture is too large (max 5 MB).');
+    }
+}
+
 
 $email = filter_var($_POST['email'] ?? '', FILTER_SANITIZE_EMAIL);
 $amount = '3.50 EUR';
@@ -80,19 +102,18 @@ try {
 
     $customerMail->addAddress(
         $email,
-        $name
     );
 
     $customerMail->Subject = "Your Unofficial Convenience Card";
 
     $customerMail->Body =
-        "Hi $name,
+        "Hi,
 
 Thank you for your request for an Unofficial Convenience Card!
 
-We have received your order details and your enrollment certificate.
+We have received your order details and your enrolment certificate.
 
-I will review your certificate and contact you shortly with a Tikkie payment request for €3.5.
+I will review your certificate and contact you shortly with a Tikkie payment request for €0.
 After payment, your card will be printed and we will arrange a handover.
 
 Thank you!
@@ -116,7 +137,6 @@ Unofficial Convenience Card
 
     $storeMail->addReplyTo(
         $email,
-        $name
     );
 
     $storeMail->addAttachment(
@@ -124,19 +144,27 @@ Unofficial Convenience Card
         $_FILES['enrolment_certificate']['name']
     );
 
+      if ($hasProfilePicture) {
+        $storeMail->addAttachment(
+            $profileTmpFile,
+            $_FILES['profile_picture']['name']
+        );
+    }
+
     $storeMail->Subject = "New Convenience Card Reservation";
 
     $storeMail->Body =
         "New reservation received
-
-Name:
-$name
 
 Email:
 $email
 
 Amount:
 $amount
+
+Profile picture provided:
+" . ($hasProfilePicture ? 'Yes' : 'No') . "
+
 
 Message:
 $message
@@ -164,16 +192,12 @@ $message
         Your request for an Unofficial Convenience Card has been received.
     </p>
 
-    <p>
-    I will review your enrollment certificate and contact you shortly with a
-    Tikkie payment request for €3.50. After payment, your card will be printed and
-    we will arrange a handover.
 </p>
 
     <p>
         You can safely close this page.
     </p>
-    <img class=\"thank-you-image\" src=\"https://img.vjbe.net/thumbs-up-nerd-image-short-sleeved-shirt-giving-273236103-1834129865.webp\" alt=\"thumbs up guy\" />
+    <img class=\"thank-you-image\" src=\"https://drive.vjbe.net/2026-09-07-shaq-shimmy.gif\" alt=\"thumbs up guy\" />
 </div>
 
 </body>
