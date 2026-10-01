@@ -112,7 +112,6 @@ header("Pragma: no-cache");
         <h1>Unofficial Convenience Card </h1>
 
 
-        <div class="sale-banner">🎉 September Sale — Free All Month 🎉</div>
         <div class="card-slider" aria-label="Card preview">
             <div class="slides">
                 <img src="https://img.vjbe.net/id-front.webp" alt="Front of the Unofficial Convenience Card">
@@ -135,9 +134,9 @@ header("Pragma: no-cache");
 </div>
         </div>
 
-       <p class="price">
-    Price: <span class="price-old">€3.50</span> <strong class="price-new">FREE</strong>
-</p>
+        <p class="price">
+            Price: <strong>€3.50</strong>
+        </p>
 
         <p class="intro">
             This is a laminated, pocket-sized copy of your enrolment certificate. It is <em>not</em> issued by Utrecht
@@ -196,7 +195,7 @@ header("Pragma: no-cache");
             <details class="faq-item">
                 <summary>What happens after I request a card?</summary>
                 <p>
-                 The <a href="https://agoodidea.vjbe.net">Good ID(ea)</a> team will print and laminate your card for free, after which they will contact you to arrange a handover. This will probably be at Drift or the Parnassos Culture Café.
+                 The <a href="https://agoodidea.vjbe.net">Good ID(ea)</a> team will send you a Tikkie payment request for €3.50. Once paid, they will print and laminate your card and contact you to arrange a handover. This will probably be at Drift or the Parnassos Culture Café.
                 </p>
             </details>
 <details class="faq-item">

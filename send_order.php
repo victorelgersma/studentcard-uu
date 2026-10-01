@@ -113,7 +113,7 @@ Thank you for your request for an Unofficial Convenience Card!
 
 We have received your order details and your enrolment certificate.
 
-I will review your certificate and contact you shortly with a Tikkie payment request for €0.
+I will review your certificate and contact you shortly with a Tikkie payment request for €3.50.
 After payment, your card will be printed and we will arrange a handover.
 
 Thank you!
